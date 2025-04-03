@@ -1,0 +1,100 @@
+/* Base styles (mobile first) */
+:root {
+    --primary-color: #333;
+    --secondary-color: #666;
+    --max-width: 1200px;
+    --spacing: 1rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+/* Container */
+.container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 0 var(--spacing);
+    max-width: var(--max-width);
+}
+
+/* Responsive images */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Responsive typography */
+html {
+    font-size: 14px;
+}
+
+/* Small devices (landscape phones) */
+@media screen and (min-width: 576px) {
+    html {
+        font-size: 15px;
+    }
+}
+
+/* Medium devices (tablets) */
+@media screen and (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+/* Large devices (desktops) */
+@media screen and (min-width: 992px) {
+    html {
+        font-size: 17px;
+    }
+}
+
+/* Extra large devices */
+@media screen and (min-width: 1200px) {
+    html {
+        font-size: 18px;
+    }
+}
+
+/* Responsive grid system */
+.grid {
+    display: grid;
+    gap: var(--spacing);
+    grid-template-columns: 1fr;
+}
+
+@media screen and (min-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Responsive navigation */
+.nav {
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacing);
+}
+
+@media screen and (min-width: 768px) {
+    .nav {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
