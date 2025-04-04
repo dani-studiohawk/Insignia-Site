@@ -423,7 +423,7 @@ footer {
 .timeline-section {
     padding: 3rem 0;
     background-color: #1a1a1a;
-    background-image: url('images/leaves-pattern.png');
+    background-image: url('assets/leaves-pattern.png');
     background-repeat: repeat;
     position: relative;
     overflow: hidden;
@@ -441,7 +441,7 @@ footer {
 /* Timeline connector line */
 .timeline-line {
     position: absolute;
-    top: 200px;
+    top: 200px; /* Adjust this to align with the diamond in the SVG */
     left: 0;
     width: 100%;
     height: 2px;
@@ -457,9 +457,12 @@ footer {
     align-items: center;
     position: relative;
     z-index: 2;
+    max-width: 400px; /* Set a maximum width for each item */
+    margin: 0 5px;
+    padding: 1rem;
 }
 
-/* Timeline content wraps image and date */
+/* Timeline content wraps frame and date */
 .timeline-content {
     display: flex;
     flex-direction: column;
@@ -471,7 +474,6 @@ footer {
 .timeline-card {
     display: block;
     width: 100%;
-    max-width: 220px;
     margin-bottom: 1rem;
     transition: transform 0.3s ease;
     text-decoration: none;
@@ -482,30 +484,37 @@ footer {
     transform: translateY(-5px);
 }
 
-.timeline-card.active {
-    transform: translateY(-5px);
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-}
-
-.timeline-card.active .timeline-marker {
-    background-color: #4CAF50;
-    box-shadow: 0 0 8px rgba(76, 175, 80, 0.6);
-}
-
-/* Image container */
-.timeline-image {
+/* Frame container */
+.timeline-frame {
     position: relative;
     width: 100%;
     height: 0;
-    padding-bottom: 75%; /* 4:3 aspect ratio */
-    overflow: hidden;
-    border-radius: 8px;
+    padding-bottom: 85%; /* Adjust based on your SVG aspect ratio */
 }
 
-.timeline-image img {
+/* SVG frame styling */
+.frame-svg {
     position: absolute;
     top: 0;
     left: 0;
+    width: 110%;
+    height: 110%;
+    z-index: 2;
+    pointer-events: none; /* Allow clicks to pass through to links */
+}
+
+/* Image within frame */
+.timeline-image {
+    position: absolute;
+    top: 5%; /* Adjust to position the image within the frame */
+    left: 5%;
+    width: 90%;
+    height: 80%; /* Adjust to leave space for the diamond */
+    z-index: 1;
+    overflow: hidden;
+}
+
+.timeline-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -514,12 +523,15 @@ footer {
 /* Title overlay */
 .timeline-overlay {
     position: absolute;
-    bottom: 0;
-    left: 0;
+    bottom: 45%; /* Adjust to position above the diamond */
+    left: 0%;
     width: 100%;
     padding: 0.75rem;
-    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+    z-index: 3;
+    text-align: center;
 }
+
+
 
 .timeline-overlay h3 {
     color: white;
@@ -528,30 +540,27 @@ footer {
     font-weight: 500;
 }
 
-/* Date marker styling */
+/* External link icon styles removed */
+
+/* Date styling */
 .timeline-date {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    text-align: center;
     margin-top: 0.5rem;
-}
-
-.timeline-marker {
-    width: 20px;
-    height: 20px;
-    background-color: white;
-    border-radius: 50%;
-    margin-bottom: 0.5rem;
-    position: relative;
-    z-index: 3;
-}
-
-.timeline-date span {
     color: white;
     font-size: 0.9rem;
 }
 
 /* Responsive styles */
+@media screen and (max-width: 992px) {
+    .timeline {
+        padding: 1rem 0;
+    }
+    
+    .timeline-item {
+        max-width: 180px;
+    }
+}
+
 @media screen and (max-width: 768px) {
     .timeline {
         flex-direction: column;
@@ -568,15 +577,6 @@ footer {
     
     .timeline-item {
         margin-bottom: 2rem;
-    }
-    
-    .timeline-date {
-        flex-direction: row;
-        margin-top: 0.5rem;
-    }
-    
-    .timeline-marker {
-        margin-bottom: 0;
-        margin-right: 0.5rem;
+        max-width: 280px;
     }
 }
