@@ -4,26 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insignia</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
-
     <header>
-        <h1>Welcome to Insignia</h1>
-        <nav>
-            <ul>
-                <li><a href="#home">Insignia</a></li>
-                <li><a href="#about">The Game</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="#contact">Contact</a></li>
+        <nav class="navbar">
+            <div class="nav-brand">
+                <img src="assets/steam/library logo.png" alt="Insignia Logo" class="logo">
+            </div>
+            
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#story">STORY</a></li>
+                <li class="nav-item"><a href="#features">FEATURES</a></li>
+                <li class="nav-item"><a href="#gallery">GALLERY</a></li>
+                <li class="nav-item"><a href="#faq">FAQ</a></li>
             </ul>
+            
+            <div class="nav-socials">
+                <a href="#x" class="btn btn-secondary"><img src="assets/socialMedia/x.png"> </a>
+                <a href="#youtube" class="btn btn-secondary"><img src="assets/socialMedia/yt.png"></a>
+                <a href="#twitch" class="btn btn-secondary"><img src="assets/socialMedia/twitch.png"></a>
+            </div>
         </nav>
     </header>
 
+    <section class="hero">
+        <div class="hero-content">
+            <img src="assets/steam/header capsule.png" alt="Insignia Header Capsule" class="header-capsule">
+        </div>
+    </section>
 
-    <footer>
-        <p>&copy; 2025 Insignia. All rights reserved.</p>
-    </footer>
-
-</body>
+   
