@@ -419,173 +419,176 @@ footer {
     }
 }
 
-/* Timeline section styles */
-
-.container-timeline {
-    max-width: 100%;
-    margin: 0 auto;
-    
-}
+/* Fixed timeline section styles */
 
 .timeline-section {
     background-color: #1a1a1a;
     background-image: url('assets/leaves-pattern.png');
     background-repeat: repeat;
+    overflow-x: auto;
+    padding: 2rem;
     position: relative;
-    overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-/* Main timeline container */
 .timeline {
-    position: relative;
     display: flex;
-    justify-content: center;
-    gap: 10px;
-   
+    gap: 2rem;
+    min-width: max-content;
+    position: relative;
+    padding: 1rem 0;
 }
 
-/* Timeline connector line */
-.timeline-line {
+.timeline::after {
+    content: '';
     position: absolute;
-    top: 164px; /* Adjust this to align with the diamond in the SVG */
+    top: 164px;
     left: 0;
     width: 100%;
     height: 3px;
     background-color: rgba(255, 255, 255, 0.3);
-    z-index: 3;
+    z-index: 1;
 }
 
-/* Individual timeline items */
 .timeline-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* This centers children horizontally */
-    justify-content: center; /* This helps with vertical centering */
+    width: 380px;
+    scroll-snap-align: start;
     position: relative;
-    z-index: 2;
-    width: 280px;
-    margin: 0 2px;
-    padding: 0.1rem;
 }
 
-
-/* Timeline content wraps frame and date */
-.timeline-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 300px;
-}
-
-
-/* Card styling */
-.timeline-card {
-    display: block;
-    width: 100%;
-    margin-bottom: 1rem;
-    transition: transform 0.3s ease;
-    text-decoration: none;
+.card {
     color: white;
+    text-decoration: none;
+    display: block;
+    transition: transform 0.3s ease;
 }
 
-.timeline-card:hover {
+.card:hover {
     transform: translateY(-5px);
 }
 
-/* Frame container */
-.timeline-frame {
+.frame {
     position: relative;
-    width: 300px;
-    height: 180px;
-    margin: auto;
-    
+    aspect-ratio: 16/9;
+    margin-bottom: 1rem;
+    height: auto;
 }
 
-/* SVG frame styling */
 .frame-svg {
     position: absolute;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100%;
     height: 100%;
     z-index: 2;
-    pointer-events: none; /* Allow clicks to pass through to links */
+    pointer-events: none;
 }
 
-/* Image within frame */
-.timeline-image {
+.frame img {
     position: absolute;
-    top: 0%; /* Adjust to position the image within the frame */
+    top: 0;
     left: 5%;
     width: 90%;
-    height: 180px; /* Adjust to leave space for the diamond */
-    z-index: 1;
-    overflow: hidden;
-    padding-bottom: 01px;
-}
-
-.timeline-image img {
-    width: 100%;
-    height: 100%;
+    height: 65%;
     object-fit: cover;
+    z-index: 1;
 }
 
-/* Title overlay */
-.timeline-overlay {
+.frame h3 {
     position: absolute;
-    bottom: 35%; /* Adjust to position above the diamond */
-    left: 0%;
+    bottom: 35%;
     width: 100%;
+    text-align: center;
     z-index: 3;
-    text-align: center;
 }
 
-
-
-.timeline-overlay h3 {
-    color: white;
-    font-size: 1.1rem;
-    margin: 0;
-    font-weight: 500;
-}
-
-/* External link icon styles removed */
-
-/* Date styling */
-.timeline-date {
+.date {
+    display: block;
     text-align: center;
-    
-    color: white;
     font-size: 0.9rem;
 }
 
-/* Responsive styles */
+/* Ensure container styles don't interfere */
+.container-timeline {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+    scroll-snap-type: x mandatory;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Responsive styles for tablet (992px and below) */
 @media screen and (max-width: 992px) {
-    .timeline {
-        padding: 1rem 0;
+    .timeline-section {
+        padding: 1.5rem;
     }
     
-    .timeline-item {
-        max-width: 180px;
+    .timeline {
+        gap: 1.5rem;
     }
 }
 
+/* Responsive styles for medium tablet (768px and below) */
 @media screen and (max-width: 768px) {
-    .timeline {
-        flex-direction: column;
-        align-items: center;
+    .timeline-section {
+        padding: 1.5rem;
     }
     
-    .timeline-line {
-        width: 2px;
-        height: 100%;
-        left: 50%;
-        top: 0;
-        transform: translateX(-50%);
+    .timeline {
+        gap: 1.5rem;
+        padding: 0;
     }
     
     .timeline-item {
-        margin-bottom: 2rem;
-        max-width: 280px;
+        width: 280px;
+        min-width: 280px;
+    }
+    
+    .timeline::after {
+        top: 144px;
+    }
+}
+
+/* Responsive styles for mobile */
+@media screen and (max-width: 576px) {
+    .timeline-section {
+        padding: 1rem;
+    }
+    
+    .timeline {
+        gap: 1.25rem;
+    }
+    
+    .timeline-item {
+        width: 250px;
+        min-width: 250px;
+    }
+    
+    .frame {
+        aspect-ratio: 16/10;
+    }
+    
+    .timeline::after {
+        top: 124px;
+    }
+}
+
+/* Extra small devices */
+@media screen and (max-width: 375px) {
+    .timeline-item {
+        width: 220px;
+        min-width: 220px;
+    }
+    
+    .frame {
+        aspect-ratio: 3/2;
+    }
+    
+    .timeline::after {
+        top: 110px;
     }
 }
